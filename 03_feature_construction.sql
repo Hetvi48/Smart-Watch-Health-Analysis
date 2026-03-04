@@ -99,6 +99,11 @@ select count(health)
 from temp_health_joined
 where (health = 'Poor');
 
+create table health_data_all_features AS
+select * from temp_health_joined;
+
+select * from health_data_all_features;
+
 create table health_data_feature_added AS
 select * from temp_health_joined;
 
@@ -107,4 +112,19 @@ DROP COLUMN activity_intensity,
 DROP COLUMN stress_sleep_ratio,
 DROP COLUMN health_score;
 
+ALTER TABLE health_data_all_features
+DROP COLUMN activity_intensity,
+DROP COLUMN stress_sleep_ratio
+;
+
+-- final ---------------------
+select * from health_data_all_features;
+-- ---------------------------
+
 select * from health_data_feature_added;
+
+select * from health_data;
+select * from health_data_backup;
+select * from health_data_backup_2;
+select * from health_data_feature_added;
+select * from health_score_table;
