@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PulseAI - Smart Watch Health Analysis</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <nav class="navbar">
+        <div class="navbar-brand">
+          <span class="logo-icon">⊚</span>
+          <span class="logo-text">PulseAI</span>
+        </div>
+        <div class="navbar-links">
+          <a href="#features">Features</a>
+          <a href="#analyze">Analyze</a>
+          <button class="cta-button">Try it now</button>
+        </div>
+      </nav>
+
+      <main>
+        <section class="hero-section">
+          <div class="hero-content">
+            <span class="badge">Dual-Model AI Engine</span>
+            <h1><span class="hero-main">Your watch</span><br /><span class="hero-main">knows.</span><br /><span class="hero-sub">We decode it.</span></h1>
+            <p>PulseAI analyzes your smart watch metrics with two chained machine learning models to instantly predict your health category — even without a stress sensor.</p>
+            <div class="hero-buttons">
+              <button class="btn-primary">Analyze my health</button>
+              <button class="btn-secondary">How it works</button>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80" alt="Smartwatch health dashboard" />
+          </div>
+        </section>
+
+        <section class="metrics-section" id="features">
+          <div class="metrics-header">
+            <span class="section-label">Two models. One verdict.</span>
+            <h2>Every metric, weighted by AI</h2>
+            <p>A health model fuses all signals. A stress model fills in the gap when your wearable can't measure stress directly — then chains into the health prediction.</p>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-icon">❤️</div>
+              <h3>Heart Rate</h3>
+              <p>Resting BPM signals cardiovascular fitness.</p>
+            </div>
+            <div class="metric-card">
+              <div class="metric-icon">💧</div>
+              <h3>Blood Oxygen</h3>
+              <p>SpO₂ reveals respiratory efficiency.</p>
+            </div>
+            <div class="metric-card">
+              <div class="metric-icon">👟</div>
+              <h3>Step Count</h3>
+              <p>Daily activity volume baseline.</p>
+            </div>
+            <div class="metric-card">
+              <div class="metric-icon">🌙</div>
+              <h3>Sleep Duration</h3>
+              <p>Recovery and circadian health.</p>
+            </div>
+            <div class="metric-card">
+              <div class="metric-icon">⚡</div>
+              <h3>Activity Level</h3>
+              <p>Intensity classification.</p>
+            </div>
+            <div class="metric-card">
+              <div class="metric-icon">⚙️</div>
+              <h3>Stress Level</h3>
+              <p>Auto-predicted if your watch lacks the sensor.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="predict-section" id="analyze">
+          <div class="predict-header">
+            <h2>Run the analysis</h2>
+            <p>Enter your latest readings. We'll do the rest.</p>
+          </div>
+
+          <div class="predict-container">
+            <div class="form-panel">
+              <form id="predictionForm">
+                <div class="form-grid">
+                  <label>
+                    <span class="label-icon">❤️</span> Heart Rate (BPM)
+                    <input type="number" name="heart_rate_BPM" min="30" max="220" step="1" placeholder="72" required />
+                  </label>
+                  <label>
+                    <span class="label-icon">💧</span> Blood Oxygen (%)
+                    <input type="number" name="blood_oxygen_level" min="90.8" max="100" step="0.1" placeholder="97" required />
+                  </label>
+                </div>
+                <div class="form-grid">
+                  <label>
+                    <span class="label-icon">👟</span> Step Count
+                    <input type="number" name="step_count" min="0" max="62486" step="1" placeholder="8000" required />
+                  </label>
+                  <label>
+                    <span class="label-icon">🌙</span> Sleep Duration (hr)
+                    <input type="number" name="sleep_duration_hr" min="0" max="12.1" step="0.1" placeholder="7.5" required />
+                  </label>
+                </div>
+                <label class="full-width">
+                  <span class="label-icon">⚡</span> Activity Level
+                  <select name="activity_level" required>
+                    <option value="">Select activity level</option>
+                    <option value="Active">Active</option>
+                    <option value="Highly_Active">Moderate</option>
+                    <option value="Sedentary">Sedentary</option>
+                  </select>
+                </label>
+                <label class="full-width">
+                  <span class="label-icon">❤️</span> Health Score (0.38-1.11)
+                  <input type="number" name="health_score" min="0.38" max="1.11" step="0.01" placeholder="0.93" required />
+                </label>
+
+                <div class="stress-toggle-container">
+                  <div class="stress-toggle-label">
+                    <span class="label-icon">⚙️</span> My watch tracks stress
+                  </div>
+                  <label class="stress-toggle">
+                    <input type="checkbox" id="stressToggle" />
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+
+                <div id="stressInputContainer" class="stress-input-section" style="display: none;">
+                  <label id="stressFieldLabel">
+                    Stress level
+                    <div class="stress-slider-container">
+                      <input type="range" name="stress_level" min="1" max="10" value="5" class="stress-slider" />
+                      <span class="stress-value" id="stressValue">5</span>/10
+                    </div>
+                  </label>
+                </div>
+
+                <button type="submit" class="predict-button">
+                  <span>⚡</span> Predict my health category
+                </button>
+              </form>
+            </div>
+
+            <aside class="result-panel">
+              <div class="result-header">
+                <span class="section-label">Model Output</span>
+                <h3>Your predicted health category</h3>
+              </div>
+              <div id="resultCard" class="result-card">
+                <p class="result-status">Error: Failed to fetch</p>
+              </div>
+            </aside>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer-panel">
+        <p>© 2024 PulseAI. Your watch knows. We decode it.</p>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
